@@ -236,5 +236,19 @@
 </div>
 
 </div>
+
+<script type="text/javascript" src="<c:url value="/js/egovframework/com/cmm/jquery-1.4.2.min.js" />"></script>
+<script type="text/javascript">
+	$.get('<c:url value="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000001" />', {}, function(data) {
+		console.log(data);
+	}, 'json');
+
+	$.get('<c:url value="/cop/bbs/selectBoardList.do" />', {
+		bbsId : 'BBSMSTR_000000000001'
+	}, function(data) {
+		console.log(data);
+	}, 'json');
+</script>
+
 </body>
 </html>
