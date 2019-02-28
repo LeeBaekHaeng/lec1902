@@ -247,7 +247,7 @@
 		bbsId : 'BBSMSTR_000000000001'
 	}, function(data) {
 		console.log(data);
-	}, 'json');
+	}, 'html');
 </script>
 
 </body>

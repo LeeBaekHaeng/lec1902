@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>서버연동</title>
+	
+	<!-- SBGrid Library -->
+	<link href="https://softbowl.sbgrid.co.kr/sbgridSamples/resources/SBGrid/css/SBGrid.css" rel="stylesheet" type="text/css">
+	<link href="https://softbowl.sbgrid.co.kr/sbgridSamples/resources/SBGrid/css/SBGrid_Default.css" rel="stylesheet" type="text/css">
+	
+	<script type="text/javascript">
+		var SBpath = "https://softbowl.sbgrid.co.kr/sbgridSamples/resources/";	//SBGrid v2.5 Library인 'SBGrid'폴더 상대경로
+	</script>
+	<script src="https://softbowl.sbgrid.co.kr/sbgridSamples/resources/SBGrid/SBGrid_Lib.js" type="text/javascript"></script>
+	<script src="https://softbowl.sbgrid.co.kr/sbgridSamples/resources/SBGrid/SBGrid_min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+	
+	var datagrid;
+	$(document).ready(function(){
+		var SBGridProperties = {};
+		SBGridProperties.parentid = 'SBGridArea';
+		SBGridProperties.id = 'datagrid';
+		SBGridProperties.jsonref = 'gridData';
+		//SBGridProperties.explorerbar = 'sortshowmove';
+		//SBGridProperties.usemultisorting = 'true'
+		//SBGridProperties.mergecells = 'bycol'; 
+		SBGridProperties.rowheader = 'seq';	
+		SBGridProperties.backcoloralternate = '#D5D5D5';
+		
+		SBGridProperties.columns = [
+// 			{caption : ['부서'],	   	ref : 'department', width : '10%', 	 style : 'text-align:center', type : 'input'},
+			{caption : ['부서'],	   	ref : 'nttSj', width : '10%', 	 style : 'text-align:center', type : 'input'},
+// 			{caption : ['직급'],    	ref : 'position',	width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['직급'],    	ref : 'frstRegisterNm',	width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+// 			{caption : ['사원번호'], 	ref : 'num',		width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['사원번호'], 	ref : 'frstRegisterPnttm',		width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+// 			{caption : ['이름'],    	ref : 'name',		width : '10%', 	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['이름'],    	ref : 'inqireCo',		width : '10%', 	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['지역'], 		ref : 'area',		width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['성별'], 		ref : 'sex',		width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['워드'],  	ref : 'word',  		width : '10%', 	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['엑셀'], 		ref : 'excel',		width : '10%',	 style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['파워포인트'],	ref : 'powerpoint',	width : '10%',   style : 'text-align:center', type : 'input', merge : false},
+			{caption : ['평균'],		ref : 'average',	width : '10%',   style : 'text-align:center', type : 'input', merge : false}
+		];
+		
+		datagrid = _SBGrid.create(SBGridProperties);
+	});
+	
+	var gridData = [];
+	function searchRow() {
+	    datagrid.lockGrid(true);
+	     
+	    $.ajax({
+	    	dataType:'json', 
+// 	        url : "https://softbowl.sbgrid.co.kr/sbgridSamples/sampleTestSearch.do",
+	        url : "../../../cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000001",
+// 	        type : "POST",
+	        type : "GET",
+	        success : function(data) {
+// 	            gridData = JSON.parse(data.result);
+// 	            gridData = JSON.parse(data.resultList);
+	            gridData = data.resultList;
+	            datagrid.refresh();
+	            datagrid.clearStatus();
+	        }
+	    });
+	 
+	    datagrid.lockGrid(false);
+	}
+		
+	</script>
+</head>
+<body>
+	<div id="SBGridArea" style="width:100%; height:400px;"></div>
+	<div align="right" style="width:100%;margin-top:5px;">
+		<input type="button" value="조회" onclick="javascript:searchRow();" />
+	</div>
+</body>
+</html>
