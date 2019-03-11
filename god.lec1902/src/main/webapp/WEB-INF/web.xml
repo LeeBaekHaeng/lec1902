@@ -127,7 +127,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:egovframework/spring/com/**/context-*.xml</param-value>
+        <param-value>classpath*:egovframework/spring/com/**/context-*.xml, classpath*:god/spring/com/**/context-*.xml</param-value>
     </context-param>
 
     <listener>

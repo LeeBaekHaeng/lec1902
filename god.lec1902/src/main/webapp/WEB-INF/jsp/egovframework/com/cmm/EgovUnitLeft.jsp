@@ -9,6 +9,8 @@
 </head>
 
 <body>
+
+<a href="<c:url value="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000001" />" target="_content">1</a>
 <c:set var="isMai" value="false"/>
 <c:set var="isUat" value="false"/>
 <c:set var="isSec" value="false"/>
